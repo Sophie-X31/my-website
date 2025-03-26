@@ -1,10 +1,53 @@
 ---
-title: "JSC370 Final Project"
-author: "Your Name"
+title: "JSC370 Lab12"
+author: "Sophie"
 output: 
     html_document:
         toc: TRUE
         toc_float: TRUE
 ---
 
-This is my JSC370 Final Project website (Lab 12).
+This is my JSC370 Lab 12 website.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(plotly)
+library(widgetframe)
+library(tidytext)
+source("process_starbucks_data.R")
+```
+
+## Showcasing plots {.tabset}
+
+### Figure 1
+
+```{r echo=FALSE}
+p1 <- ggplot(sb_locs_state, aes(x = population, y = n_stores, text = state)) +
+  geom_point(color = "blue", alpha = 0.7) +
+  labs(
+    title = "Starbucks Stores vs. State Population",
+    x = "State Population",
+    y = "Number of Starbucks Stores"
+  ) +
+  theme_minimal()
+p1_interactive <- ggplotly(p1, tooltip = "text")
+p1_interactive
+```
+
+### Figure 2
+
+```{r echo=FALSE}
+p2 <- ggplot(topwords, aes(x = reorder(word, word_frequency), y = word_frequency, text = word)) +
+  geom_point(color = "red", size = 3) +
+  labs(
+    title = "Top Words in Starbucks Menu",
+    x = "Word",
+    y = "Frequency"
+  ) +
+  coord_flip() +
+  theme_minimal()
+p2_interactive <- ggplotly(p2, tooltip = "text")
+p2_interactive
+```
+
+{-}
