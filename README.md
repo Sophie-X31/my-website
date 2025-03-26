@@ -1,1 +1,1 @@
-# my-website
+My JSC370 Final Project Website
